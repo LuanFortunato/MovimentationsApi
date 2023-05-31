@@ -1,20 +1,27 @@
-﻿using MovimentationsApi.Models;
+﻿using MovimentationsApi.Data;
+using MovimentationsApi.Models;
 
 namespace MovimentationsApi.Repositories
 {
     public class MovimentationRepository
     {
-        private readonly List<MovimentationUsecaseModel> movimentations = new List<MovimentationUsecaseModel>();
+        private readonly MovimentationsContext context;
+
+        public MovimentationRepository(MovimentationsContext context)
+        {
+            this.context = context; 
+        }
 
         public void SaveMovimentation(MovimentationUsecaseModel movimentation)
         {
             movimentation.Date = DateTime.Now;
-            movimentations.Add(movimentation);
+            context.Movimentations.Add(movimentation);
+            context.SaveChanges();
         }
 
         public List<MovimentationUsecaseModel> getAllMovimentations()
         {
-            return movimentations;
+            return context.Movimentations.ToList();
         }
     }
 }

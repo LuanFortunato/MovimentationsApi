@@ -1,3 +1,4 @@
+using MovimentationsApi.Data;
 using MovimentationsApi.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MovimentationRepository, MovimentationRepository>();
+builder.Services.AddScoped<MovimentationsContext, MovimentationsContext>();
 
 var app = builder.Build();
 

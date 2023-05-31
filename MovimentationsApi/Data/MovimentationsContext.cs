@@ -10,7 +10,7 @@ namespace MovimentationsApi.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"server=localhost;port=3306;User Id=root;database=alan; password=root");
+                @"server=localhost;User Id=root;database=movimentatinosapi; password=root; TrustServerCertificate=True);
         }
     }
 }
