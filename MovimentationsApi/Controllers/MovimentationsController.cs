@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovimentationsApi.Models;
 using MovimentationsApi.Repositories;
 using MovimentationsApi.ViewModels;
@@ -14,7 +13,7 @@ namespace MovimentationsApi.Controllers
 
         public MovimentationsController(MovimentationRepository repository)
         {
-            
+
             _repository = repository;
         }
 
@@ -45,7 +44,35 @@ namespace MovimentationsApi.Controllers
                 _repository.SaveMovimentation(movimentationUsecaseModel);
                 return Ok("Movimentação salva com sucesso!");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetMovimentation(int id)
+        {
+            try
+            {
+                var movimentation = _repository.GetMovimentation(id);
+                return Ok(movimentation);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteMovimentation(int id)
+        {
+            try
+            {
+                _repository.DeleteMovimentation(id);
+                return Ok("Movimentação deletada com sucesso");
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
