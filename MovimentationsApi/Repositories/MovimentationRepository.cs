@@ -5,23 +5,28 @@ namespace MovimentationsApi.Repositories
 {
     public class MovimentationRepository
     {
-        private readonly MovimentationsContext context;
+        private readonly MovimentationsContext _context;
 
         public MovimentationRepository(MovimentationsContext context)
         {
-            this.context = context; 
+            _context = context; 
         }
 
         public void SaveMovimentation(MovimentationUsecaseModel movimentation)
         {
-            movimentation.Date = DateTime.Now;
-            context.Movimentations.Add(movimentation);
-            context.SaveChanges();
+            using (_context)
+            {
+                _context.Set<MovimentationUsecaseModel>().Add(movimentation);
+                _context.SaveChanges();
+            }
         }
 
         public List<MovimentationUsecaseModel> getAllMovimentations()
         {
-            return context.Movimentations.ToList();
+            using (_context)
+            {
+                return _context.Set<MovimentationUsecaseModel>().ToList();
+            }
         }
     }
 }

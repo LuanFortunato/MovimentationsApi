@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using MovimentationsApi.Data;
 using MovimentationsApi.Repositories;
 
@@ -9,8 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<MovimentationsContext>();
 builder.Services.AddScoped<MovimentationRepository, MovimentationRepository>();
-builder.Services.AddScoped<MovimentationsContext, MovimentationsContext>();
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovimentationsApi.Data;
 
@@ -10,9 +11,11 @@ using MovimentationsApi.Data;
 namespace MovimentationsApi.Migrations
 {
     [DbContext(typeof(MovimentationsContext))]
-    partial class MovimentationsContextModelSnapshot : ModelSnapshot
+    [Migration("20230602225950_update key")]
+    partial class updatekey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace MovimentationsApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movimentations", (string)null);
+                    b.ToTable("Movimentations");
                 });
 #pragma warning restore 612, 618
         }

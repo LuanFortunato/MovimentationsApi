@@ -10,11 +10,12 @@ namespace MovimentationsApi.Controllers
     [ApiController]
     public class MovimentationsController : ControllerBase
     {
-        private readonly MovimentationRepository repository;
+        private readonly MovimentationRepository _repository;
 
         public MovimentationsController(MovimentationRepository repository)
         {
-            this.repository = repository;
+            
+            _repository = repository;
         }
 
         [HttpGet]
@@ -22,7 +23,7 @@ namespace MovimentationsApi.Controllers
         {
             try
             {
-                var result = repository.getAllMovimentations();
+                var result = _repository.getAllMovimentations();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -39,8 +40,9 @@ namespace MovimentationsApi.Controllers
                 var movimentationUsecaseModel = new MovimentationUsecaseModel();
                 movimentationUsecaseModel.Product_Id = movimentationViewModel.Product_Id;
                 movimentationUsecaseModel.Quantity = movimentationViewModel.Quantity;
+                movimentationUsecaseModel.Date = DateTime.Now;
 
-                repository.SaveMovimentation(movimentationUsecaseModel);
+                _repository.SaveMovimentation(movimentationUsecaseModel);
                 return Ok("Movimentação salva com sucesso!");
             }
             catch (Exception ex) 
