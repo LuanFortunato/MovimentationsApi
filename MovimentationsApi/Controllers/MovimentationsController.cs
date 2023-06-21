@@ -18,7 +18,7 @@ namespace MovimentationsApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<MovimentationUsecaseModel>> GetAllMovimentations()
+        public IActionResult GetAllMovimentations()
         {
             try
             {
@@ -32,7 +32,7 @@ namespace MovimentationsApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveMovimentation(MovimentationViewModel movimentationViewModel)
+        public IActionResult SaveMovimentation(MovimentationViewModel movimentationViewModel)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace MovimentationsApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetMovimentation(int id)
+        public IActionResult GetMovimentation(int id)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace MovimentationsApi.Controllers
         }
 
         [HttpDelete]
-        public ActionResult DeleteMovimentation(int id)
+        public IActionResult DeleteMovimentation(int id)
         {
             try
             {
